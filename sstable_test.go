@@ -35,14 +35,14 @@ func TestSearchInSsTable(t *testing.T) {
 	for _, c := range cases {
 		value, ok, err := searchInSsTable(dbDir, c.maxIndex, c.key)
 		if c.hasErr && err == nil {
-			t.Fatalf("searchInSsTable wanted hasErr=true, actual err=nil")
+			t.Fatalf("searchInSsTable expected hasErr=true, actual err=nil")
 		}
 		if !c.hasErr {
 			if !((c.value == nil && value == nil) || bytes.Equal(c.value, value)) {
-				t.Fatalf("searchInSsTable wanted value=%v, actual value=%v", c.value, value)
+				t.Fatalf("searchInSsTable expected value=%v, actual value=%v", c.value, value)
 			}
 			if c.ok != ok {
-				t.Fatalf("searchInSsTable wanted ok=%v, actual ok=%v", c.ok, ok)
+				t.Fatalf("searchInSsTable expected ok=%v, actual ok=%v", c.ok, ok)
 			}
 		}
 	}
