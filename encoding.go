@@ -77,6 +77,11 @@ func decode(r io.Reader) ([]byte, []byte, error) {
 	return key, value, err
 }
 
+// encodeKeyOffset encodes key offset and writes it to the given writer.
+func encodeKeyOffset(key []byte, offset int, w io.Writer) (int, error) {
+	return encode(key, encodeInt(offset), w)
+}
+
 // encodeInt encodes the int as a slice of bytes.
 // The function must be compatible with decodeInt.
 func encodeInt(x int) []byte {
