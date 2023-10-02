@@ -7,7 +7,7 @@ import (
 // @Author KHighness
 // @Update 2023-09-29
 
-// memTable is memory cache of ssTable.
+// memTable is memory cache of SSTable.
 // All changed that are flushed to the WAL, but not flushed to
 // the sorted files, are sorted in memory for faster lookups.
 type memTable struct {
@@ -16,7 +16,7 @@ type memTable struct {
 	b int
 }
 
-// newMemTable creates a new instance of the memTable.
+// newMemTable creates a new instance of the MemTable.
 func newMemTable() *memTable {
 	return &memTable{
 		data: rbtree.New(),
@@ -70,7 +70,7 @@ func (mt *memTable) iterator() *memTableIterator {
 	return &memTableIterator{mt.data.Iterator()}
 }
 
-// memTableIterator is iterator of memTable.
+// memTableIterator is iterator of MemTable.
 type memTableIterator struct {
 	it *rbtree.Iterator
 }
