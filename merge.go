@@ -90,6 +90,7 @@ func merge(aIt, bIt *dataFileIterator, writer *ssTableWriter) error {
 		if aKey != nil && bKey != nil {
 			cmp := bytes.Compare(aKey, bKey)
 			if cmp == 0 {
+				// aKey == bKey, ignore aKey since bKey is newer.
 				if err := writer.write(bKey, bValue); err != nil {
 					return fmt.Errorf("failed to write: %w", err)
 				}
