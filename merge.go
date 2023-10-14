@@ -25,14 +25,12 @@ func mergeSsTables(dbDir string, a, b int, sparseKeyDistance int) error {
 	if err != nil {
 		return fmt.Errorf("failed to instantiate for %s: %w", aPath, err)
 	}
-	defer aIt.close()
 
 	bPath := path.Join(dbDir, bPrefix+ssTableDataFileName)
 	bIt, err := newDataFileIterator(bPath)
 	if err != nil {
 		return fmt.Errorf("failed to iterator for %s: %w", bPath, err)
 	}
-	defer bIt.close()
 
 	writer, err := newSsTableWriter(dbDir, mergePrefix, sparseKeyDistance)
 	if err != nil {
@@ -49,6 +47,10 @@ func mergeSsTables(dbDir string, a, b int, sparseKeyDistance int) error {
 
 	if err := bIt.close(); err != nil {
 		return fmt.Errorf("failed to close iterator for %s: %w", bPath, err)
+	}
+
+	if err := writer.close(); err != nil {
+		return fmt.Errorf("failed to close writer: %w", err)
 	}
 
 	if err := deleteSsTable(dbDir, aPrefix, bPrefix); err != nil {

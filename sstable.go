@@ -218,7 +218,7 @@ func renameSsTable(dbDir string, oldPrefix, newPrefix string) error {
 		return fmt.Errorf("failed to rename index file: %w", err)
 	}
 
-	if err := os.Rename(path.Join(dbDir, oldPrefix+ssTableSparseIndexFileName), path.Join(newPrefix+ssTableSparseIndexFileName)); err != nil {
+	if err := os.Rename(path.Join(dbDir, oldPrefix+ssTableSparseIndexFileName), path.Join(dbDir, newPrefix+ssTableSparseIndexFileName)); err != nil {
 		return fmt.Errorf("failed to rename sparse index file: %w", err)
 	}
 
