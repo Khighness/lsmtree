@@ -205,8 +205,8 @@ func (t *LSMTree) Delete(key []byte) error {
 		return fmt.Errorf("failed to write wal: %w", err)
 	}
 
-	if err := t.mt.put(key, nil); err != nil {
-		return fmt.Errorf("failed to write memtable: %w", err)
+	if err := t.mt.delete(key); err != nil {
+		return fmt.Errorf("failed to delete memtable: %w", err)
 	}
 
 	return nil
