@@ -172,7 +172,7 @@ func (t *LSMTree) Put(key []byte, value []byte) error {
 	if t.ssTableNum >= t.ssTableNumberThreshold {
 		oldestIndex := t.maxSsTableIndex - t.ssTableNum + 1
 		if err := mergeSsTables(t.dbDir, oldestIndex, oldestIndex+1, t.sparseKeyDistance); err != nil {
-			return fmt.Errorf("failed to merge sstabes: %w", err)
+			return fmt.Errorf("failed to merge sstables: %w", err)
 		}
 
 		if err := updateSsTableMeta(t.dbDir, t.ssTableNum-1, t.maxSsTableIndex); err != nil {
