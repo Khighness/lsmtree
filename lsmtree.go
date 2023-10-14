@@ -105,7 +105,7 @@ func Open(dbDir string, options ...func(*LSMTree)) (*LSMTree, error) {
 	walPath := path.Join(dbDir, walFileName)
 	wal, err := os.OpenFile(walPath, os.O_RDWR|os.O_CREATE, 0600)
 	if err != nil {
-		return nil, fmt.Errorf("failed tp open file %s: %w", walPath, err)
+		return nil, fmt.Errorf("failed to open file %s: %w", walPath, err)
 	}
 
 	mt, err := loadMemTable(wal)

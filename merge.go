@@ -77,7 +77,7 @@ func merge(aIt, bIt *dataFileIterator, writer *ssTableWriter) error {
 
 		if bKey == nil && bIt.hasNext() {
 			if k, v, err := bIt.next(); err != nil {
-				return fmt.Errorf("failed tp get next for b: %w", err)
+				return fmt.Errorf("failed to get next for b: %w", err)
 			} else {
 				bKey, bValue = k, v
 			}

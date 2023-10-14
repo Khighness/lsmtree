@@ -211,11 +211,11 @@ func searchInSparseIndex(r io.Reader, searchKey []byte) (int, int, bool, error) 
 // renameSsTable rename SSTable files: data, index and sparse index files.
 func renameSsTable(dbDir string, oldPrefix, newPrefix string) error {
 	if err := os.Rename(path.Join(dbDir, oldPrefix+ssTableDataFileName), path.Join(dbDir, newPrefix+ssTableDataFileName)); err != nil {
-		return fmt.Errorf("failed tp rename data file: %w", err)
+		return fmt.Errorf("failed to rename data file: %w", err)
 	}
 
 	if err := os.Rename(path.Join(dbDir, oldPrefix+ssTableIndexFileName), path.Join(dbDir, newPrefix+ssTableIndexFileName)); err != nil {
-		return fmt.Errorf("failed tp rename index file: %w", err)
+		return fmt.Errorf("failed to rename index file: %w", err)
 	}
 
 	if err := os.Rename(path.Join(dbDir, oldPrefix+ssTableSparseIndexFileName), path.Join(newPrefix+ssTableSparseIndexFileName)); err != nil {

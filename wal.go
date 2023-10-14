@@ -14,7 +14,7 @@ import (
 func clearWAL(dbDir string, wal *os.File) (*os.File, error) {
 	walPath := path.Join(dbDir, walFileName)
 	if err := wal.Close(); err != nil {
-		return nil, fmt.Errorf("failed tp close the WAL file %s: %w", walPath, err)
+		return nil, fmt.Errorf("failed to close the WAL file %s: %w", walPath, err)
 	}
 
 	wal, err := os.OpenFile(walPath, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0600)
